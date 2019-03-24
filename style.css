@@ -1,0 +1,347 @@
+/*
+Responsive Menu + Header Full Page
+Author: Ricardo Pantoja
+URL: rickpantoja.com.br
+*/
+
+/* ////////////////////////// ADDITIONAL THEME CSS //////////////////////// */
+/* //////////////////////////     MOBILE FIRST     //////////////////////// */
+
+*,
+::before,
+::after {
+  background-repeat: no-repeat;
+  box-sizing: border-box;
+}
+
+::before,
+::after {
+  text-decoration: inherit;
+  vertical-align: inherit;
+}
+
+html {
+    font-size: 16px;
+    font-family: 'Open Sans';
+}
+
+body, h1, h2, h3, h4, h5, h6, p, ol, ul, li, a {
+    margin: 0;
+    padding: 0;
+}
+
+ol, ul, li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/*/////////////// GENERAL CONTAINER ///////////////*/
+
+.wrapper {
+    margin: 0 auto;    
+    padding: 0;
+    width: 100%;
+}
+
+.grid-12 {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+}
+
+@media (min-width: 480px) {}
+
+@media (min-width: 600px) {
+
+    .wrapper {
+        margin: 0 auto;
+        width: 100%;
+        max-width: 1180px;
+        padding: 0 10px;
+    }
+
+}
+
+/*/////////////// HEADER ///////////////*/
+
+header {
+    width: 100%;
+}
+
+.header-hero {
+    display: grid;
+    grid-template-columns: 1f;
+    grid-template-rows: 13vh auto;    
+    background-position: center center;    
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    width: 100vw;
+    animation: slideBg 10s ease-in-out infinite 0s;    
+}
+
+@keyframes slideBg {
+    0% { background-image: url(/images/heroimg_1.jpg); }
+    33% { background-image: url(/images/heroimg_2.jpg); }
+    66% { background-image: url(/images/heroimg_3.jpg); }
+    100% { background-image: url(/images/heroimg_1.jpg); }
+}
+
+.header-bar {
+    background-color: white;
+    -webkit-box-shadow: 0px 4px 2px 0px rgba(0,0,0,0.60);
+    -moz-box-shadow: 0px 4px 2px 0px rgba(0,0,0,0.60);
+    box-shadow: 0px 4px 2px 0px rgba(0,0,0,0.60);
+}
+
+.header-container {
+    height: 100%;
+    align-items: center;
+}
+
+.header-logo {
+    grid-column: 1 / 11;
+    background-image: url(images/ricklogo.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: left center;
+    height: 50%;
+    text-indent: -9999px;
+    margin-left: 20px;
+}
+
+@media (min-width: 480px) {}
+
+@media (min-width: 600px) {
+
+    .header-logo {
+        grid-column: 1 / 4;
+        height: 70%;
+    }
+
+}
+
+/*---------------- Header Navigation ----------------*/
+
+.menu-complete {
+    grid-column: 1 / 13;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: flex-start;
+    background-color: white;
+    position: fixed;
+    width: 0;
+    height: 100vh;    
+    line-height: 2.5em;
+    transition: width .5s ease-out;
+    overflow-x: hidden;
+    z-index: 1;
+}
+
+.menu-btn {
+    display: none;
+}
+
+.menu-complete > .sm-menu {
+    display: none;
+}
+
+.main-menu {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-evenly;
+    width: 100%;    
+}
+
+.main-menu li {
+    padding: 5px 20px;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.main-menu a {
+    color: black;
+}
+
+.main-menu a:hover {
+    color: #ccc;
+}
+
+@media (min-width: 480px) {}
+
+@media (min-width: 600px) {
+
+    .menu-complete {
+        width: 100%;
+        height: 10vh;
+        z-index: 0;
+        position: relative;
+        opacity: 1;
+        grid-column: 6 / 13;
+        align-items: center;
+        line-height: 0;
+    }
+
+    .main-menu {
+        flex-flow: row wrap;
+        align-content: center;
+        padding: 0;
+        width: 70%;
+    }
+
+    .main-menu li {
+        padding: 0;
+        border: 0;
+    }
+
+    .menu-complete > .sm-menu {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: flex-end;
+        width: 30%;
+    }
+
+    .menu-complete > .sm-menu li {    
+        margin-left: 5%;
+    }
+    
+    .menu-complete > .sm-menu img {
+        width: 40px;
+    }
+
+}
+
+/*---------------- Header Navigation Hamburguer Icon----------------*/
+
+.menu-icon {
+    grid-column: 11 / 13;  
+    cursor: pointer;
+    z-index: 2;      
+    margin-right: 20px;
+}
+
+.menu-icon > .navicon {
+    background: #333;
+    display: block;
+    height: 5px;
+    position: relative;
+    transition: background .2s ease-out;
+    width: 30px;
+    float: right;
+}
+
+.menu-icon > .navicon:before,
+.menu-icon > .navicon:after {
+    background: #333;
+    content: '';
+    display: block;
+    height: 100%;
+    position: absolute;
+    transition: all .2s ease-out;
+    width: 100%;
+}
+
+.menu-icon > .navicon:before {
+    top: 10px;
+}
+
+.menu-icon > .navicon:after {
+    top: -10px;
+}
+
+.menu-btn:checked ~ .menu-complete {
+    width: 60%;
+}
+
+.menu-btn:checked ~ .menu-icon .navicon {
+    background: transparent;
+}
+  
+.menu-btn:checked ~ .menu-icon .navicon:before {
+    transform: rotate(-45deg);
+}
+  
+.menu-btn:checked ~ .menu-icon .navicon:after {
+    transform: rotate(45deg);
+}
+  
+.menu-btn:checked ~ .menu-icon:not(.steps) .navicon:before,
+.menu-btn:checked ~ .menu-icon:not(.steps) .navicon:after {
+    top: 0;
+}
+
+@media (min-width: 480px) {}
+
+@media (min-width: 600px) {
+
+    .menu-icon {
+        display: none;
+    }
+
+}
+
+/*---------------- Header Welcome ----------------*/
+
+.header-wel {
+    height: 100%;
+    display: flex;
+    flex-flow: column wrap;
+    align-content: center;
+    justify-content: center;
+    color: white;
+    -webkit-filter: drop-shadow(4px -4px 2px rgba(0,0,0,0.60));
+    filter: drop-shadow(4px -4px 2px rgba(0,0,0,0.60));    
+}
+
+.header-wel h1,
+.header-wel p {
+    width: 100%;        
+    margin: 0;    
+    padding: 0 20px;
+    text-align: left;
+}
+
+.header-wel h1 {
+    margin-bottom: 30px;    
+    font-size: 3em;
+    line-height: 1;    
+}
+
+.header-wel p {
+    font-weight: bold;
+    line-height: 1.5;
+}
+
+@media (min-width: 480px) {}
+
+@media (min-width: 600px) {
+
+    .header-wel {
+        flex-flow: row-reverse wrap;
+        justify-content: center;
+        align-items: flex-start;
+        align-content: center;
+        padding-top: 40px; 
+    }
+
+    .header-wel h1,
+    .header-wel p {
+        width: 30%;         
+    }
+
+    .header-wel p {
+        margin-right: 10px;
+        text-align: right;
+    }
+
+}
+
+/*/////////////// MAIN ///////////////*/
+
+/*/////////////// FOOTER ///////////////*/
